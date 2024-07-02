@@ -1,8 +1,24 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    println(findMedianSortedArrays(intArrayOf(1, 3), intArrayOf(2))); //2
-    println(findMedianSortedArrays(intArrayOf(1, 2), intArrayOf(3, 4))); //2.5
+    println(longestPalindrome("babad")) // bab
+    println(longestPalindrome("cbbd")) // bb
+}
+
+fun longestPalindrome(s: String): String {
+    var winnerPalindrome: MutableList<Char> = mutableListOf()
+    val strArr = s.toCharArray()
+
+    for (fChar in strArr.indices) {
+        for (sChar in fChar..<strArr.size) {
+            val subStr:CharArray = strArr.copyOfRange(fChar, sChar + 1)
+            if (subStr.size > winnerPalindrome.size && subStr.contentEquals(subStr.reversedArray())) {
+                winnerPalindrome = subStr.toMutableList()
+            }
+        }
+    }
+
+    return winnerPalindrome.joinToString("")
 }
 
 fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
