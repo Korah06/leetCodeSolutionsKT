@@ -1,9 +1,20 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    println(lengthOfLongestSubstring("asdfghijahaub")); //8
-    println(lengthOfLongestSubstring("asdafghjkl")) //7
-    println(lengthOfLongestSubstring("dvdf")) //3
+    println(findMedianSortedArrays(intArrayOf(1, 3), intArrayOf(2))); //2
+    println(findMedianSortedArrays(intArrayOf(1, 2), intArrayOf(3, 4))); //2.5
+}
+
+fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
+
+    val mergedArray = (nums1 + nums2).sorted();
+
+    if(mergedArray.size %2 == 0){
+        val mid = mergedArray.size / 2
+        return (mergedArray[mid] + mergedArray[mid - 1]) / 2.0
+    }
+    return mergedArray[mergedArray.size / 2].toDouble()
+
 }
 
 fun lengthOfLongestSubstring(s: String): Int {
