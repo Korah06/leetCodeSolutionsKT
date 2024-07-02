@@ -10,33 +10,22 @@ fun lengthOfLongestSubstring(s: String): Int {
 
     val strArr = s.toCharArray()
 
-    var max: Int = 0;
+    var maxValue = 0;
 
-    val checkList: MutableList<Char> = mutableListOf();
-
-    for ((i, char) in strArr.withIndex()) {
-
-        if (!checkList.contains(char)) {
-            checkList.add(char);
-        } else {
-            if (max < checkList.size) {
-                max = checkList.size
+    for (fChar in strArr.indices) {
+        val set = mutableSetOf<Char>()
+        for (sChar in fChar..<strArr.size) {
+            if (set.contains(strArr[sChar])) {
+                break
             }
-            checkList.clear();
-            checkList.add(char)
+            set.add(strArr[sChar])
         }
-
-        if (max < checkList.size) {
-            max = checkList.size
+        if (set.size > maxValue) {
+            maxValue = set.size
         }
-//        if (i == strArr.size - 1) {
-//            if (max < checkList.size) {
-//                max = checkList.size
-//                checkList.clear();
-//            }
-//        }
     }
-    return max;
+
+    return maxValue;
 }
 
 
