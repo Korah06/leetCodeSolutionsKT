@@ -38,3 +38,89 @@ fun lengthOfLongestSubstring(s: String): Int {
     }
     return max;
 }
+
+
+fun intToRoman(num: Int): String {
+    val roman = StringBuilder()
+    var n = num
+
+    while (n > 0) {
+        when {
+            n >= 1000 -> {
+                roman.append("M")
+                n -= 1000
+            }
+            n >= 900 -> {
+                roman.append("CM")
+                n -= 900
+            }
+            n >= 500 -> {
+                roman.append("D")
+                n -= 500
+            }
+            n >= 400 -> {
+                roman.append("CD")
+                n -= 400
+            }
+            n >= 100 -> {
+                roman.append("C")
+                n -= 100
+            }
+            n >= 90 -> {
+                roman.append("XC")
+                n -= 90
+            }
+            n >= 50 -> {
+                roman.append("L")
+                n -= 50
+            }
+            n >= 40 -> {
+                roman.append("XL")
+                n -= 40
+            }
+            n >= 10 -> {
+                roman.append("X")
+                n -= 10
+            }
+            n >= 9 -> {
+                roman.append("IX")
+                n -= 9
+            }
+            n >= 5 -> {
+                roman.append("V")
+                n -= 5
+            }
+            n >= 4 -> {
+                roman.append("IV")
+                n -= 4
+            }
+            n >= 1 -> {
+                roman.append("I")
+                n -= 1
+            }
+        }
+    }
+
+    return roman.toString()
+}
+
+fun parenthesis(s: String): Boolean {
+    val stack = mutableListOf<Char>()
+
+    for (char in s) {
+        when (char) {
+            '(', '{', '[' -> stack.add(char)
+            ')' -> {
+                if (stack.isEmpty() || stack.removeAt(stack.size - 1) != '(') return false
+            }
+            '}' -> {
+                if (stack.isEmpty() || stack.removeAt(stack.size - 1) != '{') return false
+            }
+            ']' -> {
+                if (stack.isEmpty() || stack.removeAt(stack.size - 1) != '[') return false
+            }
+        }
+    }
+
+    return stack.isEmpty()
+}
