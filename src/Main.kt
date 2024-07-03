@@ -1,8 +1,27 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    println(longestPalindrome("babad")) // bab
-    println(longestPalindrome("cbbd")) // bb
+//    println(reverse(123)) //321
+//    println(reverse(-123)) //-321
+//    println(reverse(120)) //12
+    println(reverse(1534236469)) //12
+}
+
+fun reverse(x: Int): Int {
+
+    var xStr = x.toString().reversed()
+
+    if (xStr.contains("-")){
+        xStr = xStr.replace("-","")
+        xStr = "-$xStr";
+    }
+    xStr.replace("0","")
+
+    return try {
+        if(xStr.isEmpty()) 0 else xStr.toInt();
+    } catch (e:NumberFormatException){
+        0;
+    }
 }
 
 fun longestPalindrome(s: String): String {
@@ -11,7 +30,7 @@ fun longestPalindrome(s: String): String {
 
     for (fChar in strArr.indices) {
         for (sChar in fChar..<strArr.size) {
-            val subStr:CharArray = strArr.copyOfRange(fChar, sChar + 1)
+            val subStr: CharArray = strArr.copyOfRange(fChar, sChar + 1)
             if (subStr.size > winnerPalindrome.size && subStr.contentEquals(subStr.reversedArray())) {
                 winnerPalindrome = subStr.toMutableList()
             }
@@ -25,7 +44,7 @@ fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
 
     val mergedArray = (nums1 + nums2).sorted();
 
-    if(mergedArray.size %2 == 0){
+    if (mergedArray.size % 2 == 0) {
         val mid = mergedArray.size / 2
         return (mergedArray[mid] + mergedArray[mid - 1]) / 2.0
     }
@@ -66,50 +85,62 @@ fun intToRoman(num: Int): String {
                 roman.append("M")
                 n -= 1000
             }
+
             n >= 900 -> {
                 roman.append("CM")
                 n -= 900
             }
+
             n >= 500 -> {
                 roman.append("D")
                 n -= 500
             }
+
             n >= 400 -> {
                 roman.append("CD")
                 n -= 400
             }
+
             n >= 100 -> {
                 roman.append("C")
                 n -= 100
             }
+
             n >= 90 -> {
                 roman.append("XC")
                 n -= 90
             }
+
             n >= 50 -> {
                 roman.append("L")
                 n -= 50
             }
+
             n >= 40 -> {
                 roman.append("XL")
                 n -= 40
             }
+
             n >= 10 -> {
                 roman.append("X")
                 n -= 10
             }
+
             n >= 9 -> {
                 roman.append("IX")
                 n -= 9
             }
+
             n >= 5 -> {
                 roman.append("V")
                 n -= 5
             }
+
             n >= 4 -> {
                 roman.append("IV")
                 n -= 4
             }
+
             n >= 1 -> {
                 roman.append("I")
                 n -= 1
@@ -129,9 +160,11 @@ fun parenthesis(s: String): Boolean {
             ')' -> {
                 if (stack.isEmpty() || stack.removeAt(stack.size - 1) != '(') return false
             }
+
             '}' -> {
                 if (stack.isEmpty() || stack.removeAt(stack.size - 1) != '{') return false
             }
+
             ']' -> {
                 if (stack.isEmpty() || stack.removeAt(stack.size - 1) != '[') return false
             }
