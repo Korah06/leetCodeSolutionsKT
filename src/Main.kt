@@ -1,25 +1,56 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-//    println(reverse(123)) //321
-//    println(reverse(-123)) //-321
-//    println(reverse(120)) //12
-    println(reverse(1534236469)) //12
+    println(threeSum(intArrayOf(-1, 0, 1, 2, -1, -4))); //[[-1,-1,2],[-1,0,1]]
+    println(threeSum(intArrayOf())); //[]
+    println(threeSum(intArrayOf(0, 0, 0))); //[0,0,0]
+    println(threeSum(intArrayOf(0, 3, 0, 1, 1, -1, -5, -5, 3, -3, -3, 0))); //[[-3,0,3],[-1,0,1],[0,0,0]]
+}
+
+fun threeSum(nums: IntArray): List<List<Int>> {
+    nums.sort()
+    val result = mutableListOf<List<Int>>()
+
+    for (i in nums.indices) {
+        if (i > 0 && nums[i] == nums[i - 1]) continue // Evitar duplicados para el primer número
+
+        var left = i + 1
+        var right = nums.size - 1
+
+        while (left < right) {
+            val sum = nums[i] + nums[left] + nums[right]
+
+            when {
+                sum == 0 -> {
+                    result.add(listOf(nums[i], nums[left], nums[right]))
+                    left++
+                    right--
+
+                    while (left < right && nums[left] == nums[left - 1]) left++ // Evitar duplicados para el segundo número
+                    while (left < right && nums[right] == nums[right + 1]) right-- // Evitar duplicados para el tercer número
+                }
+                sum < 0 -> left++
+                else -> right--
+            }
+        }
+    }
+
+    return result
 }
 
 fun reverse(x: Int): Int {
 
     var xStr = x.toString().reversed()
 
-    if (xStr.contains("-")){
-        xStr = xStr.replace("-","")
+    if (xStr.contains("-")) {
+        xStr = xStr.replace("-", "")
         xStr = "-$xStr";
     }
-    xStr.replace("0","")
+    xStr.replace("0", "")
 
     return try {
-        if(xStr.isEmpty()) 0 else xStr.toInt();
-    } catch (e:NumberFormatException){
+        if (xStr.isEmpty()) 0 else xStr.toInt();
+    } catch (e: NumberFormatException) {
         0;
     }
 }
