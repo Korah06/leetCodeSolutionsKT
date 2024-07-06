@@ -1,10 +1,37 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    println(threeSum(intArrayOf(-1, 0, 1, 2, -1, -4))); //[[-1,-1,2],[-1,0,1]]
-    println(threeSum(intArrayOf())); //[]
-    println(threeSum(intArrayOf(0, 0, 0))); //[0,0,0]
-    println(threeSum(intArrayOf(0, 3, 0, 1, 1, -1, -5, -5, 3, -3, -3, 0))); //[[-3,0,3],[-1,0,1],[0,0,0]]
+
+}
+
+//fun letterCombinations(digits: String): List<String> {
+//
+//}
+
+//TODO
+fun myAtoi(s: String): Int {
+    val regex = "[a-zA-Z0\\s+.,@#$%]".toRegex()
+    var stringToInt:String = "";
+
+    for (char in s) {
+        if (char == ' ' && stringToInt.isEmpty()) continue
+        if (char == '-' && stringToInt.isEmpty()) {
+            stringToInt += char
+            continue
+        }
+        if (char == '+' && stringToInt.isEmpty()) continue
+        if (regex.containsMatchIn(char.toString())) break
+        stringToInt += char
+    }
+
+    if (stringToInt.isEmpty()) return 0
+    try {
+        val response:Int = stringToInt.toInt()
+        return response;
+    } catch (e: NumberFormatException) {
+        if(stringToInt.removeRange(2, stringToInt.length-1).toInt() > 0) return Int.MAX_VALUE-1
+        return Int.MIN_VALUE+1
+    }
 }
 
 fun threeSum(nums: IntArray): List<List<Int>> {
