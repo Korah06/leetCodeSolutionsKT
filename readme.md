@@ -10,4 +10,4 @@
 - ***[Problem 7](https://leetcode.com/problems/reverse-integer/)***
 - ***[Problem 8](https://leetcode.com/problems/string-to-integer-atoi/description/)*** (Not ended)
 - ***[Problem 15](https://leetcode.com/problems/3sum/)***
-- ***[Problem 17](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)*** (no ended)
+- ***[Problem 17](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)***
