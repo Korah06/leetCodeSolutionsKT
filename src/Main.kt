@@ -1,12 +1,34 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-
 }
 
-//fun letterCombinations(digits: String): List<String> {
-//
-//}
+fun letterCombinations(digits: String): List<String> {
+    val savedStrings = arrayOf("", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz")
+    val result = mutableListOf<String>()
+
+    if (digits.isEmpty()) return result
+
+    for (n in digits){
+        val index = n.toString().toInt()
+        val letters = savedStrings[index]
+        if (result.isEmpty()) {
+            result.addAll(letters.map { it.toString() })
+        } else {
+            val temp = mutableListOf<String>()
+            for (r in result) {
+                for (l in letters) {
+                    temp.add(r + l)
+                }
+            }
+            result.clear()
+            result.addAll(temp)
+        }
+    }
+
+    return result
+
+}
 
 //TODO
 fun myAtoi(s: String): Int {
